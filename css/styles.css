@@ -3,3 +3,8 @@ body {
     background-color:#171515;
     color:white;
 }
+
+.errorDisplay {
+    color:red;
+    font-family:fantasy sans-serif;
+}
