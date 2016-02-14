@@ -64,10 +64,48 @@
     # getSymbolsCheckBoxValue()
     
     ##############################################################################
-    function generatePassword($numWords,$numbersSwitch, $symbolsSwitch) {
+    function getCamelCaseCheckBoxValue() {
     ##############################################################################
-    # Purpose of this function is to generate a password based on the criteria
-    # provided.
+    # Purpose of this function is to return the value of the camelcase checkbox.
+    # On - Checkbox was selected to generate password using camelcase format.
+    # Off - Checkbox was not selected. 
+        
+        if (isset($_GET["useCamelCase"])) {
+            $camelCaseValue = $_GET["useCamelCase"]; 
+        }
+        else {
+            $camelCaseValue = "off";
+        }
+           
+        return $camelCaseValue;
+    }
+    # getSymbolsCheckBoxValue()
+    
+    ##############################################################################
+    function getDelimiter() {
+    ##############################################################################
+    # Get the delimter selected by the user. Default delimter is a hyphen('-').
+    
+        if (isset($_GET["delimiter"])) {
+            $delimiter = $_GET["delimiter"];        
+        }
+        else {
+            $delimiter = "-";
+        }
+        return $delimiter;
+    }
+    # getDelimiter()
+    
+    ##############################################################################
+    function generatePassword($numWords, $numbersSwitch, $symbolsSwitch,
+                              $camelCaseSwitch, $separator) {
+    ##############################################################################
+    # Generate a password based on the criteria provided as follows :
+    # 1. How many word to include in the password?
+    # 2. Should numbers be included?
+    # 3. Should special symbols be included?
+    # 4. Should the password be formatted in a camelcase format?
+    # 5. Should the words by delimited by a character?
         
         # hold the generated password. 
         $password = "";
@@ -88,14 +126,23 @@
         $randLen = count($randKeys);
         
         if ($randLen === 1) {
-            $password = $words[$randKeys];
+            $randomWord = $words[$randKeys];
+            if ($camelCaswSwitch === "on") {
+                $randomWord = ucfirst($randomWord);
+            }
+            $password = $randomWord;
         }
         else {
             for ($i = 0; $i < $randLen; $i++) {
-                if ($i > 0) {
-                    $password = $password."-";
+                $randomWord = $words[$randKeys[$i]];
+                if ($camelCaseSwitch === "on") {
+                    $randomWord = ucfirst($randomWord);  
                 }
-                $password = $password.$words[$randKeys[$i]];
+                
+                if ($i > 0) {
+                    $password = $password.$separator;
+                }
+                $password = $password.$randomWord;
             }
         }
         
@@ -114,10 +161,11 @@
         # return the generated password
         return $password;
     }
+    # generatePassword()
 
     # Number of words desired in the password.
     $numOfWords = getNumberOfWords();
-    if ($numOfWords === -1){
+    if ($numOfWords === -1 or ($numOfWords > 5)){
         $isIncorrectNum = 1;
         $numOfWords = 3;
     }
@@ -130,7 +178,14 @@
     # Should symbols be included in the password?
     $includeSymbols = getSymbolsCheckBoxValue();
     
+    # Should the password be in camelcase format?
+    $camelCaseFlag = getCamelCaseCheckBoxValue();
+    
+    # Get delimiter.
+    $delimitBy = getDelimiter();
+    
     # Generate a password 
-    $generatedPassword = generatePassword($numOfWords,$includeNumbers,$includeSymbols);
+    $generatedPassword = generatePassword($numOfWords,$includeNumbers,$includeSymbols,
+                                          $camelCaseFlag, $delimitBy);
 
 ?>
