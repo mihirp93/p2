@@ -26,54 +26,95 @@
         return $numWords;
     }
     # getNumberOfWords()
+    
+    ##############################################################################
+    function getNumbersCheckBoxValue() {
+    ##############################################################################
+    # Purpose of this function is to return the value of the Numbers checkbox.
+    # On - Checkbox was selected to include numbers in the xkcd password.
+    # Off - Checkbox was not selected.
+    
+        if (isset($_GET["includeNumbers"])) {
+            $numbersValue = $_GET["includeNumbers"];
+        }
+        else {
+            $numbersValue = "off";
+        }
+           
+        return $numbersValue;
+    }
+    # getNumbersCheckBOxValue()
         
     ##############################################################################
-    function getSymbolsSwitchValue() {
+    function getSymbolsCheckBoxValue() {
     ##############################################################################
     # Purpose of this function is to return the value of the Symbols checkbox.
     # On - Checkbox was selected to include special symbols in the xkcd password.
     # Off - Checkbox was not selected. 
         
         if (isset($_GET["includeSymbols"])) {
-            $symbolsSwitchValue = $_GET["includeSymbols"]; 
+            $symbolsValue = $_GET["includeSymbols"]; 
         }
         else {
-            $symbolsSwitchValue = "off";
+            $symbolsValue = "off";
         }
            
-        return $symbolsSwitchValue;
+        return $symbolsValue;
     }
-    # getSymbolsSwitchValue()
+    # getSymbolsCheckBoxValue()
+    
+    ##############################################################################
+    function generatePassword($numWords,$numbersSwitch, $symbolsSwitch) {
+    ##############################################################################
+    # Purpose of this function is to generate a password based on the criteria
+    # provided.
         
-    ##############################################################################
-    function getNumbersSwitchValue() {
-    ##############################################################################
-    # Purpose of this function is to return the value of the Numbers checkbox.
-    # On - Checkbox was selected to include numbers in the xkcd password.
-    # Off - Checkbox was not selected. 
-        if (isset($_GET["includeNumbers"])) {
-            $numbersSwitchValue = $_GET["includeNumbers"];
+        # hold the generated password. 
+        $password = "";
+        
+        # list of words
+        $words = array("hello", "world", "this", "is", "a", "test");
+    
+        # list of numbers.
+        $numbers = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+    
+        # list of special symbols.
+        $symbols = array('~', '!', '#', '$', '%', '^', '&', '*');
+        
+        # random keys to select random words from the word list.
+        $randKeys = array_rand($words, $numWords);
+        
+        # number of random keys 
+        $randLen = count($randKeys);
+        
+        if ($randLen === 1) {
+            $password = $words[$randKeys];
         }
         else {
-            $numbersSwitchValue = "off";
+            for ($i = 0; $i < $randLen; $i++) {
+                if ($i > 0) {
+                    $password = $password."-";
+                }
+                $password = $password.$words[$randKeys[$i]];
+            }
         }
-           
-        return $numbersSwitchValue;
+        
+        # append a number to the password.
+        if ($numbersSwitch === "on") {
+            $randomNumber = $numbers[array_rand($numbers,1)];
+            $password = $password.$randomNumber;
+        }
+        
+        # append a special symbol to the password.
+        if ($symbolsSwitch === "on") {
+            $randomSymbol = $symbols[array_rand($symbols,1)];
+            $password = $password.$randomSymbol;
+        }
+        
+        # return the generated password
+        return $password;
     }
-    # getNumbersSwitchValue()
-    
-    # to hold the generated password.
-    $generatedPassword = "";
-    
-    # list of words
-    $words = array("hello", "world", "this", "is", "a", "test");
-    
-    # list of numbers.
-    $numbers = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
-    
-    # list of special symbols.
-    $symbols = array('~', '!', '#', '$', '%', '^', '&', '*');
-    
+
     # Number of words desired in the password.
     $numOfWords = getNumberOfWords();
     if ($numOfWords === -1){
@@ -83,41 +124,13 @@
     else {
         $isIncorrectNum = 0;
     }
-
-    # Should symbols be included in the password?
-    $includeSymbols = getSymbolsSwitchValue();
-    
     # Should numbers be included in the password? 
-    $includeNumbers = getNumbersSwitchValue();
+    $includeNumbers = getNumbersCheckBoxValue();
+    
+    # Should symbols be included in the password?
+    $includeSymbols = getSymbolsCheckBoxValue();
+    
+    # Generate a password 
+    $generatedPassword = generatePassword($numOfWords,$includeNumbers,$includeSymbols);
 
-    # random keys to select random words from the word list.
-    $randKeys = array_rand($words, $numOfWords);
-    
-    # number of random keys 
-    $randLen = count($randKeys);
-    
-    if ($randLen === 1) {
-        $generatedPassword = $words[$randKeys];
-    }
-    else {
-        for ($i = 0; $i < $randLen; $i++) {
-            if ($i > 0) {
-                $generatedPassword = $generatedPassword."-";
-            }
-            $generatedPassword = $generatedPassword.$words[$randKeys[$i]];
-        }
-    }
-    
-    # append a special symbol to the password.
-    if ($includeSymbols === "on") {
-        $randomSymbol = $symbols[array_rand($symbols,1)];
-        $generatedPassword = $generatedPassword.$randomSymbol;
-    }
-    
-    # append a numbe to the password.
-    if ($includeNumbers === "on") {
-        $randomNumber = $numbers[array_rand($numbers,1)];
-        $generatedPassword = $generatedPassword.$randomNumber;
-    }
-    
 ?>

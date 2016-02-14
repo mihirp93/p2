@@ -8,3 +8,14 @@ body {
     color:red;
     font-family:fantasy sans-serif;
 }
+
+.password {
+    color:orange;
+    font-size:40px;
+    font-family:Cursive;
+    border-style:solid;
+    border-color:white;
+    border-width:2px;
+    display:inline;
+    margin-bottom:100px;
+}
