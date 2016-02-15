@@ -127,7 +127,7 @@
         
         if ($randLen === 1) {
             $randomWord = $words[$randKeys];
-            if ($camelCaswSwitch === "on") {
+            if ($camelCaseSwitch === "on") {
                 $randomWord = ucfirst($randomWord);
             }
             $password = $randomWord;

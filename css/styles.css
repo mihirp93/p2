@@ -1,21 +1,42 @@
-body {
+.heading {
+    font-family:Cursive;
+}
+.container {
     text-align:center;
-    background-color:#171515;
-    color:white;
+    background-color:#000000;
+    color:#ffffff;
+    font-size:20px;
+    font-family:Verdana Geneva;
+}
+
+.password_criteria {
+    text-align:center;
+    font-family:Monospace;
+    background-color:#000000;
+    color:#ffffff;
+    display:inline-block;
+    float:left;
+}
+
+.password_display {
+    color:#06B19B;
+    font-size:30px;
+    font-family:Georgia serif;
+    margin:20px;
+    padding:20px;
+    border-width:1px;
+    border-style:solid;
+    border-color:#ffffff;
+    display:inline-block;
 }
 
 .errorDisplay {
-    color:red;
+    color:#ff0000;
     font-family:fantasy sans-serif;
 }
 
-.password {
-    color:orange;
-    font-size:40px;
-    font-family:Cursive;
-    border-style:solid;
-    border-color:white;
-    border-width:2px;
-    display:inline;
-    margin-bottom:100px;
+img {
+    width:100%;
 }
+
+
