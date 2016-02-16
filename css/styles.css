@@ -20,14 +20,13 @@
 
 .password_display {
     color:#06B19B;
-    font-size:30px;
     font-family:Georgia serif;
-    margin:20px;
-    padding:20px;
-    border-width:1px;
-    border-style:solid;
-    border-color:#ffffff;
     display:inline-block;
+    font-size:30px
+}
+
+.table_heading {
+    text-align:center;
 }
 
 .errorDisplay {
@@ -35,7 +34,7 @@
     font-family:fantasy sans-serif;
 }
 
-img {
+#xkcd_image {
     width:100%;
 }
 

@@ -90,7 +90,7 @@
             $delimiter = $_GET["delimiter"];        
         }
         else {
-            $delimiter = "-";
+            $delimiter = "";
         }
         return $delimiter;
     }
@@ -110,9 +110,9 @@
         # hold the generated password. 
         $password = "";
         
-        # list of words
-        $words = array("hello", "world", "this", "is", "a", "test");
-    
+        # load list of words from a text file
+        $words = file("data/nolls-word-list.txt",FILE_IGNORE_NEW_LINES);
+
         # list of numbers.
         $numbers = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
     
@@ -165,7 +165,8 @@
 
     # Number of words desired in the password.
     $numOfWords = getNumberOfWords();
-    if ($numOfWords === -1 or ($numOfWords > 5)){
+    if ($numOfWords <= 0
+        or $numOfWords > 9){
         $isIncorrectNum = 1;
         $numOfWords = 3;
     }
@@ -184,8 +185,10 @@
     # Get delimiter.
     $delimitBy = getDelimiter();
     
-    # Generate a password 
-    $generatedPassword = generatePassword($numOfWords,$includeNumbers,$includeSymbols,
-                                          $camelCaseFlag, $delimitBy);
-
+    # Generate passwords.
+    $passwords = [];
+    for ($i = 0; $i < 5; $i++) {
+        $passwords[$i] = generatePassword($numOfWords,$includeNumbers,$includeSymbols,
+                                                   $camelCaseFlag, $delimitBy);
+    }
 ?>
