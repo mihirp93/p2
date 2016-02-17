@@ -1,7 +1,8 @@
 .heading {
     font-family:Cursive;
 }
-.container {
+
+.myContainer {
     text-align:center;
     background-color:#000000;
     color:#ffffff;
@@ -15,18 +16,35 @@
     background-color:#000000;
     color:#ffffff;
     display:inline-block;
-    float:left;
 }
 
-.password_display {
+.passwordDisplay {
     color:#06B19B;
-    font-family:Georgia serif;
     display:inline-block;
-    font-size:30px
+    font-size:30px;
+
+    
 }
 
-.table_heading {
+table, th, td {
+    border:1px solid #ffffff;
+}
+
+table {
+    border-collapse:collapse;
+}
+
+th {
+    background-color:#06B19B;
+    color:#000000;
+    padding:30px;
+    font-family:Georgia serif;
     text-align:center;
+}
+
+td {
+    padding:20px;
+    font-family: Inconsolata, Monaco, Consolas, 'Courier New', Courier;
 }
 
 .errorDisplay {
@@ -34,8 +52,49 @@
     font-family:fantasy sans-serif;
 }
 
-#xkcd_image {
-    width:100%;
+input[type=text]{
+    background-color:#000000;
+    color:#06B19B;
 }
 
+select {
+    background-color:#000000;
+    color:#ffffff;
+}
 
+.myButton {
+    font-family:Helvetica, Arial, sans-serif;;
+    font-size:30px;
+    padding:20px;
+    background-color:#06B19B;
+    color:#000000;
+    border:2px solid #000000;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+#xkcdImage {
+    display:block;
+    margin:50px auto;
+}
+
+.separator {
+    color:#AD0EA1;
+}
+
+.number {
+    color:#52A705;
+}
+
+.symbol {
+    color:#CC3304;
+}
+
+.myFooter {
+    text-align:center;
+    background-color:#000000;
+    color:#ffffff;
+    font-size:20px;
+    border:2px solid black;
+    padding:20px;
+}

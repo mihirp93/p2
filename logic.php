@@ -90,7 +90,8 @@
             $delimiter = $_GET["delimiter"];        
         }
         else {
-            $delimiter = "";
+            # set default delimiter to '-'
+            $delimiter = "-";
         }
         return $delimiter;
     }
