@@ -216,7 +216,7 @@
     if ($numOfWords <= 0
         or $numOfWords > 9){
         $isIncorrectNum = 1;
-        $numOfWords = 3;
+        $numOfWords = 4;
     }
     else {
         $isIncorrectNum = 0;

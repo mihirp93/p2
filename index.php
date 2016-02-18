@@ -51,7 +51,7 @@
             </div>
             <?php
                 if ($isIncorrectNum === 1) {
-                    echo "<div class='errorDisplay'>Invalid number. Thus, Default criteria will be used.</div>";
+                    echo "<div class='errorDisplay'>Invalid number. Thus, default criteria of 4 will be used.."</div>";
                 }
             ?>  
             <br>
