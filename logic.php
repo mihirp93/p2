@@ -1,4 +1,57 @@
 <?php
+    
+    # number of passwords to generate
+    $numOfPasswords = 10;
+
+    # list of numbers.
+    $numbers = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+    
+    # list of special symbols.
+    $symbols = array('~', '!', '#', '$', '%', '^', '&', '*');
+    
+    #####################################################################
+    function isNumber($n) {
+    #####################################################################
+    # Determine if the passed character is an element stored in the global
+    # array of numbers. If it is, return true. Otherwise, return false.
+        $numCount = count($GLOBALS["numbers"]);
+        for($i = 0; $i < $numCount; $i++){
+            if ($n === $GLOBALS["numbers"][$i])
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    ##############################################################################
+    function isSymbol($c) {
+    ##############################################################################
+    # Determine if the passed character is a special symbol by checking to see
+    # if it exists in the symbols array. If it is, return true. Otherwise, return
+    # false.
+        $symbCount = count($GLOBALS["symbols"]);
+        for($i = 0; $i < $symbCount; $i++){
+            if ($c === $GLOBALS["symbols"][$i])
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    ###############################################################################
+    function isSeparator($c){
+    ###############################################################################
+    # Determine if the passes character is one of the delimited characters.
+    # If it is, then return true. Otherwise, return false.
+        if($c == '-' or $c == '.' or $c == ','){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
     ##############################################################################
     function getNumberOfWords() {
@@ -99,7 +152,7 @@
     
     ##############################################################################
     function generatePassword($numWords, $numbersSwitch, $symbolsSwitch,
-                              $camelCaseSwitch, $separator) {
+                              $camelCaseSwitch, $num, $symb, $separator) {
     ##############################################################################
     # Generate a password based on the criteria provided as follows :
     # 1. How many word to include in the password?
@@ -114,12 +167,6 @@
         # load list of words from a text file
         $words = file("data/nolls-word-list.txt",FILE_IGNORE_NEW_LINES);
 
-        # list of numbers.
-        $numbers = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
-    
-        # list of special symbols.
-        $symbols = array('~', '!', '#', '$', '%', '^', '&', '*');
-        
         # random keys to select random words from the word list.
         $randKeys = array_rand($words, $numWords);
         
@@ -149,13 +196,13 @@
         
         # append a number to the password.
         if ($numbersSwitch === "on") {
-            $randomNumber = $numbers[array_rand($numbers,1)];
+            $randomNumber = $num[array_rand($num,1)];
             $password = $password.$randomNumber;
         }
         
         # append a special symbol to the password.
         if ($symbolsSwitch === "on") {
-            $randomSymbol = $symbols[array_rand($symbols,1)];
+            $randomSymbol = $symb[array_rand($symb,1)];
             $password = $password.$randomSymbol;
         }
         
@@ -184,12 +231,12 @@
     $camelCaseFlag = getCamelCaseCheckBoxValue();
     
     # Get delimiter.
-    $delimitBy = getDelimiter();
+    $delimChar = getDelimiter();
     
     # Generate passwords.
     $passwords = [];
-    for ($i = 0; $i < 5; $i++) {
+    for ($i = 0; $i < $numOfPasswords; $i++) {
         $passwords[$i] = generatePassword($numOfWords,$includeNumbers,$includeSymbols,
-                                                   $camelCaseFlag, $delimitBy);
+                                          $camelCaseFlag, $numbers, $symbols, $delimChar);
     }
 ?>

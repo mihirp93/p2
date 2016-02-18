@@ -4,30 +4,20 @@
 
 .myContainer {
     text-align:center;
-    background-color:#000000;
+    background-color:rgb(13,13,13);
     color:#ffffff;
     font-size:20px;
     font-family:Verdana Geneva;
 }
 
-.password_criteria {
-    text-align:center;
-    font-family:Monospace;
-    background-color:#000000;
-    color:#ffffff;
-    display:inline-block;
-}
-
 .passwordDisplay {
     color:#06B19B;
     display:inline-block;
-    font-size:30px;
-
-    
+    font-size:30px;   
 }
 
 table, th, td {
-    border:1px solid #ffffff;
+    border:2px solid #ffffff;
 }
 
 table {
@@ -37,24 +27,21 @@ table {
 th {
     background-color:#06B19B;
     color:#000000;
-    padding:30px;
-    font-family:Georgia serif;
+    padding:10px;
+    font-size:25px;
+    font-family:Georgia, serif;
     text-align:center;
 }
 
 td {
-    padding:20px;
+    padding:5px;
     font-family: Inconsolata, Monaco, Consolas, 'Courier New', Courier;
+    font-size:20px;
 }
 
 .errorDisplay {
     color:#ff0000;
     font-family:fantasy sans-serif;
-}
-
-input[type=text]{
-    background-color:#000000;
-    color:#06B19B;
 }
 
 select {
@@ -65,12 +52,13 @@ select {
 .myButton {
     font-family:Helvetica, Arial, sans-serif;;
     font-size:30px;
-    padding:20px;
-    background-color:#06B19B;
+    padding:10px;
+    background-color:#ffffff;
     color:#000000;
     border:2px solid #000000;
     border-radius:10px;
     margin-bottom:20px;
+    width:300px;
 }
 
 #xkcdImage {
@@ -79,22 +67,39 @@ select {
 }
 
 .separator {
-    color:#AD0EA1;
-}
-
-.number {
-    color:#52A705;
-}
-
-.symbol {
-    color:#CC3304;
+    color:#FF40FF;
 }
 
 .myFooter {
     text-align:center;
-    background-color:#000000;
+    background-color:rgb(13,13,13);;
     color:#ffffff;
     font-size:20px;
     border:2px solid black;
     padding:20px;
+}
+
+.numInput {
+    border:2px solid #ffffff;
+    border-radius:10px;
+    width:70px;
+    height:80px;
+    text-align:center;
+    font-size:40px;
+    margin-top:10px;
+    color:#ffffff;
+    background-color:#000000;
+}
+
+.formLabel {
+    font-size: 15px;
+    font-family: Arial;
+}
+
+.checkBoxFont {
+    font-size:15px;
+}
+
+.wordsPrompt {
+    font-family: Verdana, Geneva, sans-serif;
 }
