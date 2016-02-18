@@ -24,28 +24,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php for($i = 0; $i < $numOfPasswords; $i++){
-                            echo "<tr>";
-                            echo "<td>";
-                            echo $i + 1;
-                            echo "</td>";
-                            echo "<td>";
-                            $len = strlen($passwords[$i]);
-                            for($j = 0; $j < $len; $j++){
-                                $char = substr($passwords[$i],$j,1);
-                                if(isSeparator($char)){
-                                    echo "<span class='separator'>";
-                                    echo $char;
-                                    echo "</span>";
+                        <?php for($i = 0; $i < $numOfPasswords; $i++){ ?>
+                            <tr>
+                                <td>
+                                <?php echo $i + 1; ?>
+                                </td>
+                                <td>
+                                <?php $len = strlen($passwords[$i]); 
+                                for($j = 0; $j < $len; $j++){
+                                    $char = substr($passwords[$i],$j,1);
+                                    if(isSeparator($char)){
+                                        echo "<span class='separator'>";
+                                        echo $char;
+                                        echo "</span>";
+                                    }
+                                    else {
+                                        echo $char;
+                                    }
                                 }
-                                else {
-                                    echo $char;
-                                }
-                            }
-                            echo "</td>";
-                            echo "</tr>";
-                        }
-                        ?>
+                                ?>
+                                </td>
+                            </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
